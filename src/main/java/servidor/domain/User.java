@@ -1,5 +1,8 @@
 package servidor.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Email;
@@ -39,6 +42,12 @@ public class User{
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private boolean passwordReset;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles", 
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     public User(){
 
@@ -82,34 +91,11 @@ public class User{
         this.password = password;
     }
 
-    // public void encodePassword() {
-    //     this.password = passwordEncoder.encode(this.password);
-    // }
-
-    // @Override
-    // public String getId() {
-    //     return this.username;
-    // }
-
-    // public void setId(String id) { this.email = id; }
-
-    // @Override
-    // public boolean isAccountNonExpired() {
-    //     return true;
-    // }
-
-    // @Override
-    // public boolean isAccountNonLocked() {
-    //     return true;
-    // }
-
-    // @Override
-    // public boolean isCredentialsNonExpired() {
-    //     return true;
-    // }
-
-    // @Override
-    // public boolean isEnabled() {
-    //     return true;
-    // }
+    public Set<Role> getRoles() {
+        return roles;
+    }
+    
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }
