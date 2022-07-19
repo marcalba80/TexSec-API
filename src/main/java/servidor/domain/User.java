@@ -26,7 +26,7 @@ public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank
     @Email
@@ -42,6 +42,8 @@ public class User{
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private boolean passwordReset;
+
+    private boolean signin;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles", 
@@ -97,5 +99,13 @@ public class User{
     
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public boolean isSignin() {
+        return signin;
+    }
+
+    public void setSignin(boolean signin) {
+        this.signin = signin;
     }
 }
