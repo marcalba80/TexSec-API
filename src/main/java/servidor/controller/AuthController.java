@@ -39,7 +39,7 @@ import servidor.services.UserDetailsImpl;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
-    @Autowired
+    // @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
