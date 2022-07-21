@@ -21,6 +21,10 @@ public class Chat {
     @JoinColumn(name = "user2Id")
     private User user2;
 
+    public Chat(){
+        
+    }
+
     public Chat(String id, User user1, User user2) {
         this.chatId = id;
         this.user1 = user1;
