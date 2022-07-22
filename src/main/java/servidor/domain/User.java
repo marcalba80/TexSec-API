@@ -36,6 +36,7 @@ public class User{
     @Column(name = "email", unique = true)
     private String email;
 
+    @Column(name = "username", unique = true)
     private String username;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -68,9 +69,9 @@ public class User{
         return this.id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    // public void setId(Long id) {
+    //     this.id = id;
+    // }
 
     public String getEmail() {
         return email;
