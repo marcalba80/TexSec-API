@@ -7,7 +7,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import servidor.domain.Chat;
+// import servidor.domain.Chat;
 import servidor.payload.ChatMessage;
 import servidor.repository.ChatRepository;
 import servidor.repository.UserRepository;
@@ -26,7 +26,7 @@ public class ChatController {
 
     @MessageMapping("/chat")
     public void processMessage(@Payload ChatMessage chatMessage){
-        System.out.println("Signup");
+        System.out.println("Chat");
         // Chat chat = new Chat();
         // chat.setUser1(userRepository.findByUsername(chatMessage.getUserFrom()).get());
         // chat.setUser2(userRepository.findByUsername(chatMessage.getUserTo()).get());

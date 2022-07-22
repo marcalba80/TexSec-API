@@ -21,8 +21,10 @@ import servidor.services.UserDetailsServiceImpl;
 public class AuthTokenFilter extends OncePerRequestFilter{
     @Autowired
     private JwtUtils jwtUtils;
+
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+    
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
     @Override
@@ -47,6 +49,7 @@ public class AuthTokenFilter extends OncePerRequestFilter{
         } catch(Exception e){
             logger.error("Cannot set user authentitication", e);
         }
+        filterChain.doFilter(request, response);
     }
 
 // After this, everytime you want to get UserDetails, just use SecurityContext like this:

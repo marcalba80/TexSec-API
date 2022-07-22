@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,7 +30,7 @@ public class WebSecurityConfig{
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
 
-
+    // @Bean
     // public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
     //     authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     // }
@@ -44,11 +45,12 @@ public class WebSecurityConfig{
         return new BCryptPasswordEncoder();
     }
 
-    // @Bean
-    // public AuthenticationManager authenticationManager(AuthenticationManagerBuilder auth) throws Exception{
-    //     auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    //     return auth.build();
-    // }
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration auth) throws Exception{
+        return auth.getAuthenticationManager();
+    }
+
+    
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
@@ -60,7 +62,7 @@ public class WebSecurityConfig{
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-            // .antMatchers("/api/test/**").permitAll()
+        //     // .antMatchers("/api/test/**").permitAll()
             .anyRequest().authenticated();
         http.authenticationManager(authenticationManager);
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(name = "users", 
     uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email")
     })
 public class User{
@@ -25,6 +26,8 @@ public class User{
     // public static PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Id
+    // @SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
+    // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -61,8 +64,8 @@ public class User{
         this.password = password;
     }
 
-    public long getId() {
-        return id;
+    public Long getId() {
+        return this.id;
     }
 
     public void setId(long id) {
