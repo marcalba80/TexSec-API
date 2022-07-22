@@ -5,7 +5,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 // import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+// import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +28,7 @@ public class ChatController {
 
     @MessageMapping("/chat")
     // @PostMapping("/chat")
-    public void processMessage(@Payload @RequestBody ChatMessage chatMessage){
+    public void processMessage(@Payload /*@RequestBody*/ ChatMessage chatMessage){
         System.out.println("Chat");
         Chat chat = new Chat();
         chat.setUser1(userRepository.findByUsername(chatMessage.getUserFrom()).get());
