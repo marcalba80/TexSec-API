@@ -41,7 +41,17 @@ public class ChatController {
         if(userRepository.findByUsername(chatMessage.getUserTo()).get().isSignin()){
             
             System.out.println("Chat send");
-            simpMessagingTemplate.convertAndSendToUser(chatMessage.getUserTo(), "/queue/messages", chatMessage);
+            switch(chatMessage.getType()){
+                case ChatMessage.VALID_USER:
+                    simpMessagingTemplate.convertAndSendToUser(chatMessage.getUserFrom(), "/queue/messages", 
+                    new ChatMessage(ChatMessage.VALID_USER, chatMessage.getUserFrom(), chatMessage.getUserTo(), ""));    
+                    break;
+                // case 5:
+                    // break;
+                default: 
+                    simpMessagingTemplate.convertAndSendToUser(chatMessage.getUserTo(), "/queue/messages", chatMessage);
+                    break;
+            }            
         }
     }
 }

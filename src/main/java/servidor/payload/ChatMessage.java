@@ -1,6 +1,9 @@
 package servidor.payload;
 
 public class ChatMessage {
+    public static final int VALID_USER = 1;
+    public static final int MISSATGE = 5;
+
     private int type;
     private String userFrom;
     private String userTo;
