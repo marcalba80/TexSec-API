@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -72,6 +73,9 @@ public class AuthController {
             .collect(Collectors.toList());
 
         User user = userRepository.findByUsername(userDetails.getUsername()).get();
+        if(user.isSignin()){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User already Logged");
+        }
         user.setSignin(true);
         userRepository.save(user);
 
