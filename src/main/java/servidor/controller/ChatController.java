@@ -50,8 +50,13 @@ public class ChatController {
                     // break;
                 default: 
                     simpMessagingTemplate.convertAndSendToUser(chatMessage.getUserTo(), "/queue/messages", chatMessage);
+                    simpMessagingTemplate.convertAndSendToUser(chatMessage.getUserFrom(), "/queue/messages", 
+                        new ChatMessage(ChatMessage.COMPLETED, chatMessage.getUserFrom(), chatMessage.getUserTo(), ""));    
                     break;
             }            
+        }else{
+            simpMessagingTemplate.convertAndSendToUser(chatMessage.getUserFrom(), "/queue/messages", 
+            new ChatMessage(ChatMessage.ERROR, chatMessage.getUserFrom(), chatMessage.getUserTo(), "User not connected"));
         }
     }
 }

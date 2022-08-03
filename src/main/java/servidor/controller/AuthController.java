@@ -1,7 +1,9 @@
 package servidor.controller;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -74,7 +76,12 @@ public class AuthController {
 
         User user = userRepository.findByUsername(userDetails.getUsername()).get();
         if(user.isSignin()){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User already Logged");
+            final Map<String, Object> body = new HashMap<>();
+            // body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
+            // body.put("error", "Unauthorized");
+            body.put("message", "User already Logged");
+            // body.put("path", request.getServletPath());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body);
         }
         user.setSignin(true);
         userRepository.save(user);

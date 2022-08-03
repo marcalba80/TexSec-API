@@ -3,6 +3,8 @@ package servidor.payload;
 public class ChatMessage {
     public static final int VALID_USER = 1;
     public static final int MISSATGE = 5;
+    public static final int ERROR = 6;
+    public static final int COMPLETED = 7;
 
     private int type;
     private String userFrom;
