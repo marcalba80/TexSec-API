@@ -2,6 +2,7 @@ package servidor.payload;
 
 public class ChatMessage {
     public static final int VALID_USER = 1;
+    public static final int SEND_RSA = 2;
     public static final int MISSATGE = 5;
     public static final int ERROR = 6;
     public static final int COMPLETED = 7;
@@ -9,9 +10,9 @@ public class ChatMessage {
     private int type;
     private String userFrom;
     private String userTo;
-    private String content;
+    private Object content;
 
-    public ChatMessage(int type, String userFrom, String userTo, String content) {
+    public ChatMessage(int type, String userFrom, String userTo, Object content) {
         this.type = type;
         this.userFrom = userFrom;
         this.userTo = userTo;
@@ -42,7 +43,7 @@ public class ChatMessage {
         this.userTo = userTo;
     }
 
-    public String getContent() {
+    public Object getContent() {
         return content;
     }
 
