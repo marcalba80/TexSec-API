@@ -1,9 +1,9 @@
 package servidor.controller;
 
-import java.util.HashMap;
+// import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+// import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,7 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+// import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -75,14 +75,14 @@ public class AuthController {
             .collect(Collectors.toList());
 
         User user = userRepository.findByUsername(userDetails.getUsername()).get();
-        if(user.isSignin()){
-            final Map<String, Object> body = new HashMap<>();
-            // body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
-            // body.put("error", "Unauthorized");
-            body.put("message", "User already Logged");
-            // body.put("path", request.getServletPath());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body);
-        }
+        // if(user.isSignin()){
+        //     final Map<String, Object> body = new HashMap<>();
+        //     // body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
+        //     // body.put("error", "Unauthorized");
+        //     body.put("message", "User already Logged");
+        //     // body.put("path", request.getServletPath());
+        //     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(body);
+        // }
         user.setSignin(true);
         userRepository.save(user);
 
