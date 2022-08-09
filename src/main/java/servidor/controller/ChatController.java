@@ -47,11 +47,10 @@ public class ChatController {
                     new ChatMessage(ChatMessage.VALID_USER, chatMessage.getUserFrom(), chatMessage.getUserTo(), ""));    
                     break;
                 case ChatMessage.SEND_RSA:
-                    simpMessagingTemplate.convertAndSendToUser(chatMessage.getUserTo(), "/queue/messages", chatMessage);
-                    break;
                 case ChatMessage.SEND_RND:
+                case ChatMessage.SEED_INI:
                     simpMessagingTemplate.convertAndSendToUser(chatMessage.getUserTo(), "/queue/messages", chatMessage);
-                    break;
+                    break;                
                 // case 5:
                     // break;
                 default: 

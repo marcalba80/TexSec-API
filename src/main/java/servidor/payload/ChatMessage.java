@@ -4,6 +4,7 @@ public class ChatMessage {
     public static final int VALID_USER = 1;
     public static final int SEND_RSA = 2;
     public static final int SEND_RND = 3;
+    public static final int SEED_INI = 4;
     public static final int MISSATGE = 5;
     public static final int ERROR = 6;
     public static final int COMPLETED = 7;
