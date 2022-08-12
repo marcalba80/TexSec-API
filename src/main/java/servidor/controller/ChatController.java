@@ -27,7 +27,6 @@ public class ChatController {
     SimpMessagingTemplate simpMessagingTemplate;
 
     @MessageMapping("/chat")
-    // @PostMapping("/chat")
     public void processMessage(@Payload /*@RequestBody*/ ChatMessage chatMessage){
         System.out.println("Chat");
         Chat chat = new Chat();
@@ -50,9 +49,7 @@ public class ChatController {
                 case ChatMessage.SEND_RND:
                 case ChatMessage.SEED_INI:
                     simpMessagingTemplate.convertAndSendToUser(chatMessage.getUserTo(), "/queue/messages", chatMessage);
-                    break;                
-                // case 5:
-                    // break;
+                    break;                                
                 default: 
                     simpMessagingTemplate.convertAndSendToUser(chatMessage.getUserTo(), "/queue/messages", chatMessage);
                     simpMessagingTemplate.convertAndSendToUser(chatMessage.getUserFrom(), "/queue/messages", 

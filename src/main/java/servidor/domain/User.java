@@ -10,10 +10,6 @@ import javax.validation.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-// import org.springframework.security.core.userdetails.UserDetails;
-// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-// import org.springframework.security.crypto.password.PasswordEncoder;
-
 
 @Entity
 @Table(name = "users", 
@@ -22,12 +18,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
         @UniqueConstraint(columnNames = "email")
     })
 public class User{
-    
-    // public static PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Id
-    // @SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
-    // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -68,10 +60,6 @@ public class User{
     public Long getId() {
         return this.id;
     }
-
-    // public void setId(Long id) {
-    //     this.id = id;
-    // }
 
     public String getEmail() {
         return email;

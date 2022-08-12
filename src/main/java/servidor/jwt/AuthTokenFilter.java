@@ -50,12 +50,7 @@ public class AuthTokenFilter extends OncePerRequestFilter{
             logger.error("Cannot set user authentitication", e);
         }
         filterChain.doFilter(request, response);
-    }
-
-// After this, everytime you want to get UserDetails, just use SecurityContext like this:
-// UserDetails userDetails =
-//     (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    
+    }    
 
     private String parseJwt(HttpServletRequest request){
         String jwt = jwtUtils.getJwtFromCookies(request);

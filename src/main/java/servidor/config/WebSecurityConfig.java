@@ -33,12 +33,7 @@ public class WebSecurityConfig{
     UserDetailsServiceImpl userDetailsService;
     
     @Autowired
-    private AuthEntryPointJwt unauthorizedHandler;
-
-    // @Bean
-    // public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-    //     authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-    // }
+    private AuthEntryPointJwt unauthorizedHandler;   
 
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
